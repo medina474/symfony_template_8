@@ -35,13 +35,14 @@ symfony server:start
 
 ## Option B : Développer dans un Dev Container
 
-Un conteneur de développement (ou dev container) permet d'utiliser Docker comme un environnement de développement complet. Il peut servir à exécuter une application, à isoler les outils, les bibliothèques et les environnements d'exécution nécessaires au travail sur un projet en particulier. Il facilite aussi l'intégration continue et les tests. Les conteneurs de développement peuvent être exécutés localement ou à distance, dans un cloud privé ou public, et sont pris en charge par de nombreux outils et éditeurs ([Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) ou [PhpStorm](https://www.jetbrains.com/help/phpstorm/connect-to-devcontainer.html)).
+Un conteneur de développement (ou dev container) permet d'utiliser Docker comme un environnement de développement complet. Il peut servir à exécuter une application, à isoler les outils, les bibliothèques et les environnements d'exécution nécessaires au travail sur un projet en particulier. Il facilite aussi l'intégration continue et les tests. 
+Les conteneurs de développement peuvent être exécutés localement ou à distance, dans un cloud privé ou public, et sont pris en charge par de nombreux outils et éditeurs ([Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) ou [PhpStorm](https://www.jetbrains.com/help/phpstorm/connect-to-devcontainer.html)).
 
 L'environnement de développement est **identique** pour tous les membres de l'équipe, quel que soit leur système d'exploitation ou leur configuration locale.
 
 Par exemple le développeur A travaille sous Windows avec Php 8.2, B sous Mac avec Php 8.3 et C sous Linux avec Php 8.4. Avec Dev Container les 3 travaillent avec la même version de Php et la même configuration (php.ini).
 
-https://blog.stephane-robert.info/docs/developper/autres-outils/ide/visual-studio-code/devcontainers/
+Plus d'informations sur le blog de [Stéphane Robert](https://blog.stephane-robert.info/docs/developper/autres-outils/ide/visual-studio-code/devcontainers/)
 
 Ce dépôt utilise le template officiel proposé par Kévin Dunglas : [Symfony Docker](https://github.com/dunglas/symfony-docker)
 
@@ -50,7 +51,7 @@ Kévin Dunglas est un contributeur actif au projet Symfony,où il a participé �
 Ces principales contributions sont :
 
 - [**API Platform**](https://api-platform.com/) : un framework construit sur Symfony permettant de développer rapidement des API REST, GraphQL et, plus récemment, des API temps réel. Il est utilisé par de nombreuses entreprises et administrations.
--  [**FrankenPHP**](https://frankenphp.dev/fr/) : un serveur d'applications PHP moderne basé sur Caddy, conçu pour améliorer les performances et simplifier le déploiement des applications PHP. Il prend en charge des fonctionnalités comme les workers, HTTP/2, HTTP/3 et HTTPS automatique. Il est compatible à de nombreux projets Php comme Laravel et Wordpress.
+- [**FrankenPHP**](https://frankenphp.dev/fr/) : un serveur d'applications PHP moderne basé sur Caddy, conçu pour améliorer les performances et simplifier le déploiement des applications PHP. Il prend en charge des fonctionnalités comme les workers, HTTP/2, HTTP/3 et HTTPS automatique. Il est compatible à de nombreux projets Php comme Laravel et WordPress.
 - [**Mercure**](https://mercure.rocks/) : un protocole et un hub permettant de diffuser des mises à jour en temps réel vers les navigateurs via les technologies web standard.
 - [**Vulcain**](https://vulcain.rocks/) : une proposition visant à optimiser les API hypermédia en réduisant le nombre de requêtes HTTP nécessaires grâce à des mécanismes standardisés.
 

@@ -2,7 +2,8 @@
 
 Un installeur et environnement d'exécution du framework [Symfony](https://symfony.com) basé sur [Docker](https://www.docker.com/), intégrant [FrankenPHP](https://frankenphp.dev) et [Caddy](https://caddyserver.com/).
 
-Compatible avec les agents de développement IA : il inclut un [Dev Container](https://containers.dev/) ainsi qu'un [guide d'une page](agents.md) expliquant comment utiliser [OpenCode](https://opencode.ai), [Claude Code](https://claude.ai/claude-code) ou tout autre assistant de développement basé sur l'IA, avec un modèle local ou distant, et la possibilité d'activer un bac à sable réseau (network sandbox) optionnel.
+Compatible avec les agents de développement IA : il inclut un [Dev Container](https://containers.dev/) ainsi qu'un [guide d'une page](agents.md) expliquant comment utiliser [OpenCode](https://opencode.ai), 
+[Claude Code](https://claude.ai/claude-code) ou tout autre assistant de développement basé sur l'IA, avec un modèle local ou distant, et la possibilité d'activer un bac à sable réseau (network sandbox) optionnel.
 
 ![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
 
