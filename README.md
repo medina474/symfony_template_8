@@ -19,7 +19,7 @@ composer create-project symfony/skeleton:"8.1.*" sae5_xxx_yyy
 cd sae5_xxx_yyy
 ```
 
-Il est préférable de partir le gabarit minimal (skeleton), plutôt que sur le gabarit webapp. Il est important de comprendre les différents modules qui seront installés, plutôt que ne pas utiliser ceux présents par défaut parceque l'on ne comprend pas leur utilité.
+Il est préférable de partir le gabarit minimal (skeleton), plutôt que sur le gabarit webapp. Il est important de comprendre les différents modules qui seront installés, plutôt que ne pas utiliser ceux présents par défaut parce que l'on ne comprend pas leur utilité.
 
 Afficher les informations du projet en cours.
 
@@ -35,7 +35,7 @@ symfony server:start
 
 ## Option B : Développer dans un Dev Container
 
-Un conteneur de développement (ou dev container) permet d'utiliser Docker comme un environnement de développement complet. Il peut servir à exécuter une application, à isoler les outils, les bibliothèques et les environnements d'exécution nécessaires au travail sur un projet en particulier. Il facilite aussi l'intégration continue et les tests. 
+Un conteneur de développement (ou dev container) permet d'utiliser Docker comme un environnement de développement complet. Il peut servir à exécuter une application, à isoler les outils, les bibliothèques et les environnements d'exécution nécessaires au travail sur un projet en particulier. Il facilite aussi l'intégration continue et les tests.
 Les conteneurs de développement peuvent être exécutés localement ou à distance, dans un cloud privé ou public, et sont pris en charge par de nombreux outils et éditeurs ([Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) ou [PhpStorm](https://www.jetbrains.com/help/phpstorm/connect-to-devcontainer.html)).
 
 L'environnement de développement est **identique** pour tous les membres de l'équipe, quel que soit leur système d'exploitation ou leur configuration locale.
