@@ -11,10 +11,11 @@
         "ghcr.io/devcontainers/features/node:1": {}
     },
     "remoteUser": "nonroot",
-    "postCreateCommand": "npm install -g intelephense",
+    "postCreateCommand": "npm install -g intelephense && curl -fsSL https://opencode.ai/install | bash",
     "customizations": {
         "vscode": {
             "extensions": [
+                "sst-dev.opencode",
                 "bmewburn.vscode-intelephense-client",
                 "xdebug.php-debug"
             ],
