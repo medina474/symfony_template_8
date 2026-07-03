@@ -50,10 +50,10 @@ Ce dépôt utilise le template officiel proposé par *Kévin Dunglas* : [Symfony
 
 Ces principales contributions sont :
 
-- [**API Platform**](https://api-platform.com/) : un framework construit sur Symfony permettant de développer rapidement des API REST, GraphQL et, plus récemment, des API temps réel. Il est utilisé par de nombreuses entreprises et administrations.
-- [**FrankenPHP**](https://frankenphp.dev/fr/) : un serveur d'applications PHP moderne basé sur Caddy, conçu pour améliorer les performances et simplifier le déploiement des applications PHP. Il prend en charge des fonctionnalités comme les workers, HTTP/2, HTTP/3 et HTTPS automatique. Il est compatible à de nombreux projets *Php* comme *Laravel* et *WordPress*.
-- [**Mercure**](https://mercure.rocks/) : un protocole et un hub permettant de diffuser des mises à jour en temps réel vers les navigateurs via les technologies web standard.
-- [**Vulcain**](https://vulcain.rocks/) : une proposition visant à optimiser les API hypermédia en réduisant le nombre de requêtes HTTP nécessaires grâce à des mécanismes standardisés.
+- [***API Platform***](https://api-platform.com/) : un framework construit sur Symfony permettant de développer rapidement des API REST, GraphQL et, plus récemment, des API temps réel. Il est utilisé par de nombreuses entreprises et administrations.
+- [***FrankenPHP***](https://frankenphp.dev/fr/) : un serveur d'applications PHP moderne basé sur Caddy, conçu pour améliorer les performances et simplifier le déploiement des applications PHP. Il prend en charge des fonctionnalités comme les workers, HTTP/2, HTTP/3 et HTTPS automatique. Il est compatible à de nombreux projets *Php* comme *Laravel* et *WordPress*.
+- [***Mercure***](https://mercure.rocks/) : un protocole et un hub permettant de diffuser des mises à jour en temps réel vers les navigateurs via les technologies web standard.
+- [***Vulcain***](https://vulcain.rocks/) : une proposition visant à optimiser les API hypermédia en réduisant le nombre de requêtes HTTP nécessaires grâce à des mécanismes standardisés.
 
 Télécharger ce dépôt et l'ouvrir avec **Visual Studio Code**, équipé de l'extension [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
@@ -75,11 +75,8 @@ Cette opération est à faire à chaque fois que l'image est reconstruite.
 ## Composants de développement
 
 ```shell
-composer require --dev symfony/debug-pack
+composer require --dev xxx/xxx
 ```
-
-*symfony/debug-pack* fournit un ensemble d’outils de debug (*profiler*, *var-dumper*, logs améliorés) pour analyser le comportement de l’application. Ajoute la célèbre barre de développement de Symfony.
-
 > [!INFO]
 >
 > Avec ***Dev Container*** les commandes doivent être exécutées à l'intérieur du conteneur. Ouvrir une fenêtre terminal dans *Visual Studio Code*.
@@ -88,11 +85,13 @@ composer require --dev symfony/debug-pack
 composer require --dev symfony/maker-bundle symfony/debug-pack symfony/test-pack phpstan/phpstan-symfony
 ```
 
+***symfony/debug-pack*** fournit un ensemble d’outils de debug (*profiler*, *var-dumper*, logs améliorés) pour analyser le comportement de l’application. Ajoute la célèbre barre de développement de Symfony.
+
 ### Symfony Maker
 
-*symfony/maker-bundle* génère du code standard prêt à être personnalisé (CRUD, entités, contrôleurs) via la ligne de commande. Il standardise la structure et les bonnes pratiques Symfony. Cette commande est très utiles quand il faut créer simultanément plusieurs fichiers liés en même temps.
+***symfony/maker-bundle*** génère du code standard prêt à être personnalisé (CRUD, entités, contrôleurs) via la ligne de commande. Il standardise la structure et les bonnes pratiques Symfony. Cette commande est très utiles quand il faut créer simultanément plusieurs fichiers liés en même temps.
 
-Lister toutes les commandes associées à *Symfony Maker*
+Lister toutes les commandes associées à *Symfony Maker*.
 
 ```shell
 php bin/console list make
@@ -100,7 +99,7 @@ php bin/console list make
 
 ### Symfony Test Pack
 
-*symfony/test-pack* est un meta-package qui installe et configure les outils de test (PHPUnit) prêts à l’emploi. Il simplifie la mise en place d’une stratégie de tests dans Symfony.
+***symfony/test-pack*** est un meta-package qui installe et configure les outils de test (PHPUnit) prêts à l’emploi. Il simplifie la mise en place d’une stratégie de tests dans Symfony.
 
 Lancer les tests unitaires
 
@@ -110,7 +109,7 @@ bin/phpunit
 
 ### PHPStan
 
-*phpstan/phpstan-symfony* intègre un outil d'analyse statique du code source afin de détecter les erreurs potentielles.
+***phpstan/phpstan-symfony*** intègre un outil d'analyse statique du code source afin de détecter les erreurs potentielles.
 
 - vérification stricte des types (beaucoup plus poussée qu'*Intelephense*)
 - détection de bugs logiques (*null*, types incohérents, appels impossibles)
@@ -142,4 +141,22 @@ composer require symfony/twig-bundle symfony/asset symfony/asset-mapper
 
 ```shell
 composer require symfony/stimulus-bundle symfony/ux-turbo
+```
+
+* ***symfonycasts/tailwind-bundle*** : Intègre *Tailwind CSS* avec une configuration simplifiée. Il permet de compiler automatiquement les styles Tailwind durant le développement et le déploiement.
+
+Télécharger le client *tailwind* et initialiser la configuration.
+
+```shell
+php bin/console tailwind:init
+```
+
+#### Compilation continue avec Symfony server
+
+Éditer le fichier `.symfony.local.yaml`.
+
+```yaml
+workers:
+    tailwind:
+        cmd: ['symfony', 'console', 'tailwind:build', '--watch']
 ```
