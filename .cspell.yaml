@@ -6,8 +6,8 @@ import:
 language: fr, fr_FR
 words:
   - Symfony
-ignorePaths":
-  - **/*.sql
+ignorePaths:
+  - "**/*.sql"
 languageSettings:
   - languageId: markdown
     ignoreRegExpList:
