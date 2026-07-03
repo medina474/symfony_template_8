@@ -82,4 +82,4 @@ jobs:
           VALIDATE_TRIVY: false
           VALIDATE_BIOME_FORMAT: false
           VALIDATE_BIOME_LINT: false
-          VALIDATE_CODESPELL: false
+          VALIDATE_SPELL_CODESPELL: false
