@@ -22,6 +22,7 @@ if [ "$1" = 'frankenphp' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 		composer require symfony/twig-bundle symfony/asset symfony/asset-mapper symfony/ux-icons --no-interaction
 		composer require symfony/stimulus-bundle symfony/ux-turbo --no-interaction
 		composer require symfonycasts/tailwind-bundle --no-interaction
+        composer require symfony/orm-pack symfony/form symfony/validator symfony/mailer --no-interaction
 
 		# Remove the project install block from this script and the compose.yaml
 		sed -i '/^\t###> dunglas\/symfony-docker ###/,/^\t###< dunglas\/symfony-docker ###/d' frankenphp/docker-entrypoint.sh
