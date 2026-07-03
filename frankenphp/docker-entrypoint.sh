@@ -18,16 +18,16 @@ if [ "$1" = 'frankenphp' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 		composer config --json extra.symfony.docker 'true'
 
 		composer config --json extra.symfony.allow-contrib true
+		composer require symfony/monolog-bundle --no-interaction
 		composer require --dev symfony/maker-bundle symfony/debug-pack symfony/test-pack phpstan/phpstan-symfony --no-interaction
 		composer require symfony/twig-bundle symfony/asset symfony/asset-mapper symfony/ux-icons --no-interaction
 		composer require symfony/stimulus-bundle symfony/ux-turbo --no-interaction
 		composer require symfonycasts/tailwind-bundle --no-interaction
 		composer require symfony/orm-pack symfony/form symfony/validator symfony/mailer --no-interaction
 		composer require symfony/security-bundle --no-interaction
-		composer require symfony/redis-messenger symfony/mercure-bundle symfony/notifier
-		composer require symfony/uid
-		composer require symfony/monolog-bundle
-
+		composer require symfony/redis-messenger symfony/mercure-bundle symfony/notifier --no-interaction
+		composer require symfony/uid --no-interaction
+		
 		# Remove the project install block from this script and the compose.yaml
 		sed -i '/^\t###> dunglas\/symfony-docker ###/,/^\t###< dunglas\/symfony-docker ###/d' frankenphp/docker-entrypoint.sh
 		sed -i '/###> dunglas\/symfony-docker ###/,/###< dunglas\/symfony-docker ###/d' compose.yaml
