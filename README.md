@@ -188,6 +188,32 @@ workers:
 
 * ***symfony/validator*** : Permet de valider les données à l'aide de règles déclaratives. Il est couramment utilisé pour vérifier les entités, les *DTO* et les données de formulaires.
 
+## Communication
+
+* ***symfony/messenger*** : Fournit un système de bus de messages pour découpler les traitements de l'application. Il permet d'exécuter des tâches de manière synchrone ou asynchrone via des files d'attente et des workers.
+
+Pour stocker les messages en file d'attente, il faut ajouter au moins un transport. C'est à dire une infrastructure capable de prendre en charge les messages et de les stocker temporairement, le temps qu'ils soient traités.
+Différents supports sont disponibles :
+
+- ***symfony/doctrine-messenger*** utilise la base de données du projet.
+- ***symfony/redis-messenger*** utilise un serveur Redis ou compatible.
+- ***symfony/amqp-messenger*** utilise un serveur comme RabbitMQ et le protocole AMQP.
+- ***symfony/amazon-sqs-messenger*** utilise l'infrastructure Amazon.
+
+Pour consommer les messages asynchrones, il faut exécuter la commande suivante :
+
+```shell
+bin/console messenger:consume async -vv
+```
+
+> [!WARNING]
+>
+> En production il convient de créer des services Docker supplémentaires pour exécuter la commande `consume` et traiter les messages.
+
+* ***symfony/mercure-bundle*** : Intègre le protocole Mercure à Symfony pour diffuser des mises à jour en temps réel vers les clients. Il permet de publier des événements et de mettre à jour automatiquement les interfaces sans rechargement de la page.
+
+* ***symfony/notifier*** : Fournit un système unifié pour envoyer des notifications via différents canaux (email, SMS, Slack, webhook, etc.). Il permet de centraliser la gestion des alertes applicatives et de les distribuer via plusieurs canaux  selon le type de notification ou le contexte d’exécution.
+
 * ***symfony/mailer*** : Fournit une *API* unifiée pour l'envoi d'e-mails. Il prend en charge de nombreux transports comme *SMTP*, *SendGrid*, *Mailgun* ou *Amazon SES*.
 
 ## Composants de sécurité
