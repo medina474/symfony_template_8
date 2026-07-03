@@ -220,3 +220,8 @@ bin/console messenger:consume async -vv
 
 * ***symfony/security-bundle*** implémente le système d'authentification et d'autorisation de Symfony. Il permet de gérer les utilisateurs, les rôles, les permissions et les mécanismes de connexion.
 
+## Observabilité
+
+L’observabilité désigne l’ensemble des mécanismes permettant de comprendre le comportement d’une application en production à travers ses logs, ses métriques et ses traces. Le framework fournit une base solide pour la journalisation structurée, et s’intègre facilement avec des outils de traçage distribué (*OpenTelemetry*) et de monitoring (*Prometheus*, *Datadog*, *Grafana*).
+
+* ***symfony/monolog-bundle***: Fournit un système de journalisation. Il permet d’enregistrer et de router les logs de l’application vers différents supports (fichiers, services externes, bases de données) selon leur niveau de gravité et le contexte d’exécution.
