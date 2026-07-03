@@ -123,3 +123,15 @@ Il fonctionne en ligne de commande surtout en intégration continue.
 ```shell
 vendor/bin/phpstan analyse src
 ```
+
+## Composants frontend
+
+- ***symfony/twig-bundle*** : Intègre le moteur de templates Twig dans Symfony. Il permet de générer les vues HTML et fournit de nombreuses fonctionnalités spécifiques à Symfony.
+
+- ***symfony/asset*** : Fournit des outils pour générer les URLs des ressources statiques (CSS, JavaScript, images). Il facilite également la gestion des versions d'assets pour le cache navigateur.
+
+- ***symfony/asset-mapper*** : Permet de gérer et exposer les fichiers CSS, JavaScript et autres ressources sans avoir besoin d'un bundler comme Webpack. Il résout automatiquement les dépendances ES Modules et optimise la gestion des assets.
+
+```shell
+composer require symfony/twig-bundle symfony/asset symfony/asset-mapper
+```
