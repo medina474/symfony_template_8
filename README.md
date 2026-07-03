@@ -135,3 +135,11 @@ vendor/bin/phpstan analyse src
 ```shell
 composer require symfony/twig-bundle symfony/asset symfony/asset-mapper
 ```
+
+* ***symfony/stimulus-bundle*** intègre la bibliothèque JavaScript Stimulus. Elle ajoute du comportement interactif en reliant des controllers à des éléments DOM de la page HTML via des attributs `data-*`, sans imposer une architecture complète SPA comme *React* ou *Svelte*.
+
+* ***symfony/ux-turbo*** intègre la bibliothèque JavaScript Hotwire Turbo. Elle accélère la navigation en interceptant les requêtes HTTP pour mettre à jour uniquement des fragments HTML au lieu de recharger toute la page, tout en laissant la logique côté serveur.
+
+```shell
+composer require symfony/stimulus-bundle symfony/ux-turbo
+```
