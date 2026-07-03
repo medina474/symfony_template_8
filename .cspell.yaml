@@ -10,4 +10,4 @@ languageSettings:
   - languageId: markdown
     ignoreRegExpList:
       - "/^```[\s\S]*?^```/gm"
-      - "/_+[^\n]*?_+/g"
+      - "/\*+[^\n]*?\*+/g"
