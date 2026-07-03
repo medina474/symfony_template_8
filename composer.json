@@ -17,8 +17,10 @@
         "symfony/framework-bundle": "8.1.*",
         "symfony/monolog-bundle": "^4.0",
         "symfony/runtime": "8.1.*",
+        "symfony/stimulus-bundle": "^3.2",
         "symfony/twig-bundle": "8.1.*",
         "symfony/ux-icons": "^3.2",
+        "symfony/ux-turbo": "^3.2",
         "symfony/yaml": "8.1.*"
     },
     "config": {
