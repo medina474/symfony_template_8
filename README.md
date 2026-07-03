@@ -190,3 +190,7 @@ workers:
 
 * ***symfony/mailer*** : Fournit une *API* unifiée pour l'envoi d'e-mails. Il prend en charge de nombreux transports comme *SMTP*, *SendGrid*, *Mailgun* ou *Amazon SES*.
 
+## Composants de sécurité
+
+* ***symfony/security-bundle*** implémente le système d'authentification et d'autorisation de Symfony. Il permet de gérer les utilisateurs, les rôles, les permissions et les mécanismes de connexion.
+
