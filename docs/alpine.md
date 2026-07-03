@@ -1,6 +1,6 @@
 # Utiliser Alpine Linux à la place de Debian
 
-L'image Docker de **FrankenPHP** de cet environnement, utilise une base **Debian**.
+L'image Docker de **FrankenPHP** de cet environnement utilise une base **Debian**.
 C'est la solution recommandée.
 
 > [!WARNING]

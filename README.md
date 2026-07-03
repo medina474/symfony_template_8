@@ -35,7 +35,7 @@ symfony server:start
 
 ## Option B : Développer dans un Dev Container
 
-Un conteneur de développement (ou dev container) permet d'utiliser Docker comme un environnement de développement complet. Il peut servir à exécuter une application, à isoler les outils, les bibliothèques et les environnements d'exécution nécessaires au travail sur un projet en particulier. Il facilite aussi l'intégration continue et les tests.
+Un conteneur de développement (ou dev container) permet d'utiliser **Docker** comme un environnement de développement complet. Il peut servir à exécuter une application, à isoler les outils, les bibliothèques et les environnements d'exécution nécessaires au travail sur un projet en particulier. Il facilite aussi l'intégration continue et les tests.
 Les conteneurs de développement peuvent être exécutés localement ou à distance, dans un cloud privé ou public, et sont pris en charge par de nombreux outils et éditeurs ([Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) ou [PhpStorm](https://www.jetbrains.com/help/phpstorm/connect-to-devcontainer.html)).
 
 L'environnement de développement est **identique** pour tous les membres de l'équipe, quel que soit leur système d'exploitation ou leur configuration locale.
@@ -55,19 +55,73 @@ Ces principales contributions sont :
 - [**Mercure**](https://mercure.rocks/) : un protocole et un hub permettant de diffuser des mises à jour en temps réel vers les navigateurs via les technologies web standard.
 - [**Vulcain**](https://vulcain.rocks/) : une proposition visant à optimiser les API hypermédia en réduisant le nombre de requêtes HTTP nécessaires grâce à des mécanismes standardisés.
 
-Télécharger ce dépôt et l'ouvrir avec Visual Studio Code, équipé de l'extension [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+Télécharger ce dépôt et l'ouvrir avec **Visual Studio Code**, équipé de l'extension [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 > [!WARNING]
-> Le conteneur est rootless c'est à dire qu'il utilise un utilisateur sans privilège. Mais lors de la construction de l'image certains fichiers ont été crées par l'utilisateur root. Il faut donc réinitialiser le propriétaire pour tous les fichiers.
+> Le conteneur est *rootless* c'est à dire qu'il utilise un utilisateur sans privilège. Mais lors de la construction de l'image certains fichiers ont été crées par l'utilisateur root. Il faut donc réinitialiser le propriétaire pour tous les fichiers.
 
 ```shell
 docker compose exec php chown -R $(id -u):$(id -g) .
 ```
 
-Avec Windows
+Avec Windows depuis une invite de commande dans le dossier du projet.
 
 ```shell
 docker compose exec php chown -R 1000:1000 .
 ```
 
 Cette opération est à faire à chaque fois que l'image est reconstruite.
+
+## Composants de développement
+
+```shell
+composer require --dev symfony/debug-pack
+```
+
+**symfony/debug-pack** fournit un ensemble d’outils de debug (profiler, var-dumper, logs améliorés) pour analyser le comportement de l’application. Ajoute la célèbre barre de développement de Symfony.
+
+> [!INFO]
+>
+> Avec ***Dev Container*** les commandes doivent être exécutées à l'intérieur du conteneur. Ouvrir une fenêtre terminal dans Visual Studio Code.
+
+```shell
+composer require --dev symfony/maker-bundle symfony/debug-pack symfony/test-pack phpstan/phpstan-symfony
+```
+
+### Symfony Maker
+
+**symfony/maker-bundle** génère du code standard prêt à être personnalisé (CRUD, entités, contrôleurs) via la ligne de commande. Il standardise la structure et les bonnes pratiques Symfony. Cette commande est très utiles quand il faut créer simultanément plusieurs fichiers liés en même temps.
+
+Lister toutes les commandes associées à Symfony Maker
+
+```shell
+php bin/console list make
+```
+
+### Symfony Test Pack
+
+**symfony/test-pack** est un meta-package qui installe et configure les outils de test (PHPUnit) prêts à l’emploi. Il simplifie la mise en place d’une stratégie de tests dans Symfony.
+
+Lancer les tests unitaires
+
+```shell
+bin/phpunit
+```
+
+### PHPStan
+
+* **phpstan/phpstan-symfony** : Intègre PHPStan un outil qui analyse le code source afin de détecter les erreurs potentielles.
+
+C’est un outil de d'analyse statique profond :
+
+- vérification stricte des types (beaucoup plus poussée qu’Intelephense)
+- détection de bugs logiques (null, types incohérents, appels impossibles)
+- analyse du code sans exécution
+- niveau de rigueur configurable (level 0 → 10)
+- compréhension avancée de frameworks via extensions (Symfony, Doctrine, etc.)
+
+Il fonctionne en ligne de commande surtout en intégration continue.
+
+```shell
+vendor/bin/phpstan analyse src
+```
