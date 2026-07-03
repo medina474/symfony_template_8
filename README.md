@@ -163,7 +163,7 @@ composer require symfony/stimulus-bundle symfony/ux-turbo
 Télécharger le client *tailwind* et initialiser la configuration.
 
 ```shell
-php bin/console tailwind:init
+php bin/console tailwind:build -v
 ```
 
 #### Compilation continue au démarrage de Symfony server
