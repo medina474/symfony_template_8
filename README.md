@@ -77,7 +77,7 @@ Cette opération est à faire à chaque fois que l'image est reconstruite.
 ```shell
 composer require --dev xxx/xxx
 ```
-> [!INFO]
+> [!TIP]
 >
 > Avec ***Dev Container*** les commandes doivent être exécutées à l'intérieur du conteneur. Ouvrir une fenêtre terminal dans *Visual Studio Code*.
 
