@@ -5,6 +5,7 @@ RUN set -eux; \
   apt-get install -y --no-install-recommends \
   locales; \
   apt-get clean; \
+  rm -rf /var/lib/apt/lists/* \
   sed -i '/fr_FR.UTF-8/s/^# //' /etc/locale.gen; \
   locale-gen;
 
@@ -28,5 +29,5 @@ ADD https://gitlab.com/dalibo/postgresql_anonymizer/-/package_files/248481847/do
 RUN set -eux; \
   apt-get install \
   /tmp/*.deb \
-  -y; \
+  -y --no-install-recommends; \
   rm /tmp/*.deb;
