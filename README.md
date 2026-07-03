@@ -129,7 +129,7 @@ vendor/bin/phpstan analyse src
 
 - ***symfony/asset*** : Fournit des outils pour générer les URLs des ressources statiques (CSS, JavaScript, images). Il facilite également la gestion des versions d'assets pour le cache navigateur.
 
-- ***symfony/asset-mapper*** : Permet de gérer et exposer les fichiers CSS, JavaScript et autres ressources sans avoir besoin d'un bundler comme Webpack. Il résout automatiquement les dépendances ES Modules et optimise la gestion des assets.
+- ***symfony/asset-mapper*** : Permet de gérer et exposer les fichiers CSS, JavaScript et autres ressources sans avoir besoin d'un bundler comme [*webpack*](https://webpack.js.org/). Il résout automatiquement les dépendances ES Modules et optimise la gestion des assets.
 
 * ***symfony/ux-icons*** : Permet d'utiliser facilement des bibliothèques d'icônes dans les templates Twig. Les icônes sont intégrées comme composants réutilisables et optimisées automatiquement.
 
@@ -138,7 +138,7 @@ vendor/bin/phpstan analyse src
 composer require symfony/twig-bundle symfony/asset symfony/asset-mapper symfony/ux-icons
 ```
 
-Pour trouver une icône à intégrer dans vos *assets*, visitez le site [UX Icons](https://ux.symfony.com/icons). 
+Pour trouver une icône à intégrer dans vos *assets*, visitez le site [UX Icons](https://ux.symfony.com/icons).
 
 Pour télécharger l'icône maison de la bibliothèque *Google Material Icon*.
 
@@ -177,7 +177,7 @@ workers:
 ```
 
 > [!WARNING]
-> 
+>
 > Uniquement avec l'option A Développement sur le poste local.
 
 ## Composants backend
@@ -214,7 +214,7 @@ bin/console messenger:consume async -vv
 
 * ***symfony/notifier*** : Fournit un système unifié pour envoyer des notifications via différents canaux (email, SMS, Slack, webhook, etc.). Il permet de centraliser la gestion des alertes applicatives et de les distribuer via plusieurs canaux  selon le type de notification ou le contexte d’exécution.
 
-* ***symfony/mailer*** : Fournit une *API* unifiée pour l'envoi d'e-mails. Il prend en charge de nombreux transports comme *SMTP*, *SendGrid*, *Mailgun* ou *Amazon SES*.
+* ***symfony/mailer*** : Fournit une *API* unifiée pour l'envoi d'emails. Il prend en charge de nombreux transports comme *SMTP*, *SendGrid*, *Mailgun* ou *Amazon SES*.
 
 ## Composants de sécurité
 
