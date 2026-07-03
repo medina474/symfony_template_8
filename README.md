@@ -36,7 +36,7 @@ symfony server:start
 ## Option B : Développer dans un Dev Container
 
 Un conteneur de développement (ou dev container) permet d'utiliser **Docker** comme un environnement de développement complet. Il peut servir à exécuter une application, à isoler les outils, les bibliothèques et les environnements d'exécution nécessaires au travail sur un projet en particulier. Il facilite aussi l'intégration continue et les tests.
-Les conteneurs de développement peuvent être exécutés localement ou à distance, dans un cloud privé ou public, et sont pris en charge par de nombreux outils et éditeurs ([Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) ou [PhpStorm](https://www.jetbrains.com/help/phpstorm/connect-to-devcontainer.html)).
+Les conteneurs de développement peuvent être exécutés localement ou à distance, dans un cloud privé ou public, et sont pris en charge par de nombreux outils et éditeurs ([*Visual Studio Code*](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) ou [*PhpStorm*](https://www.jetbrains.com/help/phpstorm/connect-to-devcontainer.html)).
 
 L'environnement de développement est **identique** pour tous les membres de l'équipe, quel que soit leur système d'exploitation ou leur configuration locale.
 
@@ -44,9 +44,9 @@ Par exemple le développeur A travaille sous Windows avec Php 8.2, B sous Mac av
 
 Plus d'informations sur le blog de [Stéphane Robert](https://blog.stephane-robert.info/docs/developper/autres-outils/ide/visual-studio-code/devcontainers/)
 
-Ce dépôt utilise le template officiel proposé par Kévin Dunglas : [Symfony Docker](https://github.com/dunglas/symfony-docker)
+Ce dépôt utilise le template officiel proposé par *Kévin Dunglas* : [Symfony Docker](https://github.com/dunglas/symfony-docker)
 
-Kévin Dunglas est un contributeur actif au projet Symfony,où il a participé à plusieurs composants et améliorations, notamment autour des API, de la sérialisation et des standards du Web.
+*Kévin Dunglas* est un contributeur actif au projet Symfony,où il a participé à plusieurs composants et améliorations, notamment autour des API, de la sérialisation et des standards du Web.
 
 Ces principales contributions sont :
 
@@ -78,11 +78,11 @@ Cette opération est à faire à chaque fois que l'image est reconstruite.
 composer require --dev symfony/debug-pack
 ```
 
-**symfony/debug-pack** fournit un ensemble d’outils de debug (*profiler*, *var-dumper*, logs améliorés) pour analyser le comportement de l’application. Ajoute la célèbre barre de développement de Symfony.
+*symfony/debug-pack* fournit un ensemble d’outils de debug (*profiler*, *var-dumper*, logs améliorés) pour analyser le comportement de l’application. Ajoute la célèbre barre de développement de Symfony.
 
 > [!INFO]
 >
-> Avec ***Dev Container*** les commandes doivent être exécutées à l'intérieur du conteneur. Ouvrir une fenêtre terminal dans Visual Studio Code.
+> Avec ***Dev Container*** les commandes doivent être exécutées à l'intérieur du conteneur. Ouvrir une fenêtre terminal dans *Visual Studio Code*.
 
 ```shell
 composer require --dev symfony/maker-bundle symfony/debug-pack symfony/test-pack phpstan/phpstan-symfony
@@ -90,7 +90,7 @@ composer require --dev symfony/maker-bundle symfony/debug-pack symfony/test-pack
 
 ### Symfony Maker
 
-**symfony/maker-bundle** génère du code standard prêt à être personnalisé (CRUD, entités, contrôleurs) via la ligne de commande. Il standardise la structure et les bonnes pratiques Symfony. Cette commande est très utiles quand il faut créer simultanément plusieurs fichiers liés en même temps.
+*symfony/maker-bundle* génère du code standard prêt à être personnalisé (CRUD, entités, contrôleurs) via la ligne de commande. Il standardise la structure et les bonnes pratiques Symfony. Cette commande est très utiles quand il faut créer simultanément plusieurs fichiers liés en même temps.
 
 Lister toutes les commandes associées à *Symfony Maker*
 
@@ -100,7 +100,7 @@ php bin/console list make
 
 ### Symfony Test Pack
 
-**symfony/test-pack** est un meta-package qui installe et configure les outils de test (PHPUnit) prêts à l’emploi. Il simplifie la mise en place d’une stratégie de tests dans Symfony.
+*symfony/test-pack* est un meta-package qui installe et configure les outils de test (PHPUnit) prêts à l’emploi. Il simplifie la mise en place d’une stratégie de tests dans Symfony.
 
 Lancer les tests unitaires
 
@@ -110,10 +110,10 @@ bin/phpunit
 
 ### PHPStan
 
-**phpstan/phpstan-symfony** intègre un outil d'analyse statique du code source afin de détecter les erreurs potentielles.
+*phpstan/phpstan-symfony* intègre un outil d'analyse statique du code source afin de détecter les erreurs potentielles.
 
 - vérification stricte des types (beaucoup plus poussée qu'*Intelephense*)
-- détection de bugs logiques (null, types incohérents, appels impossibles)
+- détection de bugs logiques (*null*, types incohérents, appels impossibles)
 - analyse du code sans exécution
 - niveau de rigueur configurable (niveau de 0 à 10)
 - compréhension avancée de frameworks via des extensions (Symfony, Doctrine, etc.)
