@@ -50,12 +50,12 @@ Kévin Dunglas est un contributeur actif au projet Symfony,où il a participé �
 
 Ces principales contributions sont :
 
-- [__API Platform__](https://api-platform.com/) : un framework construit sur Symfony permettant de développer rapidement des API REST, GraphQL et, plus récemment, des API temps réel. Il est utilisé par de nombreuses entreprises et administrations.
-- [__FrankenPHP__](https://frankenphp.dev/fr/) : un serveur d'applications PHP moderne basé sur Caddy, conçu pour améliorer les performances et simplifier le déploiement des applications PHP. Il prend en charge des fonctionnalités comme les workers, HTTP/2, HTTP/3 et HTTPS automatique. Il est compatible à de nombreux projets _Php_ comme _Laravel_ et _WordPress_.
-- [__Mercure__](https://mercure.rocks/) : un protocole et un hub permettant de diffuser des mises à jour en temps réel vers les navigateurs via les technologies web standard.
-- [__Vulcain__](https://vulcain.rocks/) : une proposition visant à optimiser les API hypermédia en réduisant le nombre de requêtes HTTP nécessaires grâce à des mécanismes standardisés.
+- [**API Platform**](https://api-platform.com/) : un framework construit sur Symfony permettant de développer rapidement des API REST, GraphQL et, plus récemment, des API temps réel. Il est utilisé par de nombreuses entreprises et administrations.
+- [**FrankenPHP**](https://frankenphp.dev/fr/) : un serveur d'applications PHP moderne basé sur Caddy, conçu pour améliorer les performances et simplifier le déploiement des applications PHP. Il prend en charge des fonctionnalités comme les workers, HTTP/2, HTTP/3 et HTTPS automatique. Il est compatible à de nombreux projets *Php* comme *Laravel* et *WordPress*.
+- [**Mercure**](https://mercure.rocks/) : un protocole et un hub permettant de diffuser des mises à jour en temps réel vers les navigateurs via les technologies web standard.
+- [**Vulcain**](https://vulcain.rocks/) : une proposition visant à optimiser les API hypermédia en réduisant le nombre de requêtes HTTP nécessaires grâce à des mécanismes standardisés.
 
-Télécharger ce dépôt et l'ouvrir avec __Visual Studio Code__, équipé de l'extension [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+Télécharger ce dépôt et l'ouvrir avec **Visual Studio Code**, équipé de l'extension [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 > [!WARNING]
 > Le conteneur est *rootless* c'est à dire qu'il utilise un utilisateur sans privilège. Mais lors de la construction de l'image certains fichiers ont été crées par l'utilisateur root. Il faut donc réinitialiser le propriétaire pour tous les fichiers.
@@ -78,7 +78,7 @@ Cette opération est à faire à chaque fois que l'image est reconstruite.
 composer require --dev symfony/debug-pack
 ```
 
-__symfony/debug-pack__ fournit un ensemble d’outils de debug (_profiler_, _var-dumper_, logs améliorés) pour analyser le comportement de l’application. Ajoute la célèbre barre de développement de Symfony.
+**symfony/debug-pack** fournit un ensemble d’outils de debug (*profiler*, *var-dumper*, logs améliorés) pour analyser le comportement de l’application. Ajoute la célèbre barre de développement de Symfony.
 
 > [!INFO]
 >
@@ -90,9 +90,9 @@ composer require --dev symfony/maker-bundle symfony/debug-pack symfony/test-pack
 
 ### Symfony Maker
 
-__symfony/maker-bundle__ génère du code standard prêt à être personnalisé (CRUD, entités, contrôleurs) via la ligne de commande. Il standardise la structure et les bonnes pratiques Symfony. Cette commande est très utiles quand il faut créer simultanément plusieurs fichiers liés en même temps.
+**symfony/maker-bundle** génère du code standard prêt à être personnalisé (CRUD, entités, contrôleurs) via la ligne de commande. Il standardise la structure et les bonnes pratiques Symfony. Cette commande est très utiles quand il faut créer simultanément plusieurs fichiers liés en même temps.
 
-Lister toutes les commandes associées à _Symfony Maker_
+Lister toutes les commandes associées à *Symfony Maker*
 
 ```shell
 php bin/console list make
@@ -100,7 +100,7 @@ php bin/console list make
 
 ### Symfony Test Pack
 
-__symfony/test-pack__ est un meta-package qui installe et configure les outils de test (PHPUnit) prêts à l’emploi. Il simplifie la mise en place d’une stratégie de tests dans Symfony.
+**symfony/test-pack** est un meta-package qui installe et configure les outils de test (PHPUnit) prêts à l’emploi. Il simplifie la mise en place d’une stratégie de tests dans Symfony.
 
 Lancer les tests unitaires
 
@@ -110,9 +110,9 @@ bin/phpunit
 
 ### PHPStan
 
-__phpstan/phpstan-symfony__ intègre un outil d'analyse statique du code source afin de détecter les erreurs potentielles.
+**phpstan/phpstan-symfony** intègre un outil d'analyse statique du code source afin de détecter les erreurs potentielles.
 
-- vérification stricte des types (beaucoup plus poussée qu'_Intelephense_)
+- vérification stricte des types (beaucoup plus poussée qu'*Intelephense*)
 - détection de bugs logiques (null, types incohérents, appels impossibles)
 - analyse du code sans exécution
 - niveau de rigueur configurable (niveau de 0 à 10)
