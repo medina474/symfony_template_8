@@ -140,10 +140,10 @@ composer require symfony/twig-bundle symfony/asset symfony/asset-mapper symfony/
 
 Pour trouver une icône à intégrer dans vos *assets*, visitez le site [UX Icons](https://ux.symfony.com/icons). 
 
-Pour télécharger l'icône
+Pour télécharger l'icône maison de la bibliothèque *Google Material Icon*.
 
 ```shell
-bin/console ux:icon:import material-symbols:home
+bin/console ux:icon:import ic:baseline-home
 ```
 
 ### Hotwire
@@ -166,7 +166,7 @@ Télécharger le client *tailwind* et initialiser la configuration.
 php bin/console tailwind:init
 ```
 
-#### Compilation continue avec Symfony server
+#### Compilation continue au démarrage de Symfony server
 
 Éditer le fichier `.symfony.local.yaml`.
 
@@ -175,3 +175,18 @@ workers:
     tailwind:
         cmd: ['symfony', 'console', 'tailwind:build', '--watch']
 ```
+
+> [!WARNING]
+> 
+> Uniquement avec l'option A Développement sur le poste local.
+
+## Composants backend
+
+* ***symfony/orm-pack*** : Pack de dépendances qui installe et configure *Doctrine ORM* pour Symfony. Il simplifie la mise en place de la persistance des données relationnelles.
+
+* ***symfony/form*** : Fournit un système complet de création, affichage et traitement de formulaires. Il gère automatiquement le mapping entre les données soumises et les objets métier.
+
+* ***symfony/validator*** : Permet de valider les données à l'aide de règles déclaratives. Il est couramment utilisé pour vérifier les entités, les *DTO* et les données de formulaires.
+
+* ***symfony/mailer*** : Fournit une *API* unifiée pour l'envoi d'e-mails. Il prend en charge de nombreux transports comme *SMTP*, *SendGrid*, *Mailgun* ou *Amazon SES*.
+
