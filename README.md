@@ -125,25 +125,40 @@ vendor/bin/phpstan analyse src
 
 ## Composants frontend
 
-- ***symfony/twig-bundle*** : Intègre le moteur de templates Twig dans Symfony. Il permet de générer les vues HTML et fournit de nombreuses fonctionnalités spécifiques à Symfony.
+- ***symfony/twig-bundle*** : Intègre le moteur de templates [*Twig*](https://twig.symfony.com/). Il permet de générer les vues HTML et fournit de nombreuses fonctionnalités spécifiques à Symfony.
 
 - ***symfony/asset*** : Fournit des outils pour générer les URLs des ressources statiques (CSS, JavaScript, images). Il facilite également la gestion des versions d'assets pour le cache navigateur.
 
 - ***symfony/asset-mapper*** : Permet de gérer et exposer les fichiers CSS, JavaScript et autres ressources sans avoir besoin d'un bundler comme Webpack. Il résout automatiquement les dépendances ES Modules et optimise la gestion des assets.
 
+* ***symfony/ux-icons*** : Permet d'utiliser facilement des bibliothèques d'icônes dans les templates Twig. Les icônes sont intégrées comme composants réutilisables et optimisées automatiquement.
+
+
 ```shell
-composer require symfony/twig-bundle symfony/asset symfony/asset-mapper
+composer require symfony/twig-bundle symfony/asset symfony/asset-mapper symfony/ux-icons
 ```
 
-* ***symfony/stimulus-bundle*** intègre la bibliothèque JavaScript Stimulus. Elle ajoute du comportement interactif en reliant des controllers à des éléments DOM de la page HTML via des attributs `data-*`, sans imposer une architecture complète SPA comme *React* ou *Svelte*.
+Pour trouver une icône à intégrer dans vos *assets*, visitez le site [UX Icons](https://ux.symfony.com/icons). 
 
-* ***symfony/ux-turbo*** intègre la bibliothèque JavaScript Hotwire Turbo. Elle accélère la navigation en interceptant les requêtes HTTP pour mettre à jour uniquement des fragments HTML au lieu de recharger toute la page, tout en laissant la logique côté serveur.
+Pour télécharger l'icône
+
+```shell
+bin/console ux:icon:import material-symbols:home
+```
+
+### Hotwire
+
+* ***symfony/stimulus-bundle*** intègre la bibliothèque JavaScript [*Hotwire Stimulus*](https://stimulus.hotwired.dev/). Elle ajoute du comportement interactif en reliant des controllers à des éléments DOM de la page HTML via des attributs `data-*`, sans imposer une architecture complète SPA comme *React* ou *Svelte*.
+
+* ***symfony/ux-turbo*** intègre la bibliothèque JavaScript [*Hotwire Turbo*](https://turbo.hotwired.dev/). Elle accélère la navigation en interceptant les requêtes HTTP pour mettre à jour uniquement des fragments HTML au lieu de recharger toute la page, tout en laissant la logique côté serveur.
 
 ```shell
 composer require symfony/stimulus-bundle symfony/ux-turbo
 ```
 
-* ***symfonycasts/tailwind-bundle*** : Intègre *Tailwind CSS* avec une configuration simplifiée. Il permet de compiler automatiquement les styles Tailwind durant le développement et le déploiement.
+### Tailwind CSS
+
+* ***symfonycasts/tailwind-bundle*** : Intègre la bibliothèque CSS [*Tailwind CSS*](https://tailwindcss.com/) avec une configuration simplifiée. Il permet de compiler automatiquement les styles Tailwind durant le développement et le déploiement.
 
 Télécharger le client *tailwind* et initialiser la configuration.
 
