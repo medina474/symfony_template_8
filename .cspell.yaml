@@ -6,3 +6,8 @@ import:
 language: fr, fr_FR
 words:
   - Symfony
+languageSettings:
+  - languageId: markdown
+    ignoreRegExpList:
+      - "/^```[\s\S]*?^```/gm"
+      - "/_+[^\n]*?_+/g"
