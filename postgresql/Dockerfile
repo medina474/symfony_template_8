@@ -20,8 +20,8 @@ RUN set -eux; \
   # ca-certificates: for accessing remote raster files;
   #   fix: https://github.com/postgis/docker-postgis/issues/307
     ca-certificates \
-    postgresql-postgis \
-    postgresql-18-pgtap; \
+    postgresql-postgis=3.5.2+dfsg-1 \
+    postgresql-18-pgtap=1.3.4-1; \
   rm -rf /var/lib/apt/lists/*
 
 ADD https://gitlab.com/dalibo/postgresql_anonymizer/-/package_files/248481847/download /tmp/postgresql_anonymizer_pg18-2.5.1.amd64.deb
