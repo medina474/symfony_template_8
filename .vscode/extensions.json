@@ -1,6 +1,5 @@
 {
     "recommendations": [
-        "streetsidesoftware.code-spell-checker-french",
-        "sqlfluff.vscode-sqlfluff"
+        "streetsidesoftware.code-spell-checker-french"
     ]
 }

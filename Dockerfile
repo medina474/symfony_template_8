@@ -69,6 +69,17 @@ EOF
 
 COPY --link frankenphp/conf.d/20-app.dev.ini $PHP_INI_DIR/app.conf.d/
 
+# sqlfluff (requires Python)
+# hadolint ignore=DL3008
+RUN <<-EOF
+	apt-get update
+	apt-get install -y --no-install-recommends \
+		python3 \
+		python3-pip
+	rm -rf /var/lib/apt/lists/*
+	pip3 install --no-cache-dir --break-system-packages sqlfluff[rs]
+EOF
+
 # OpenCode
 RUN <<-'EOF'
 	mkdir -p /data/opencode
