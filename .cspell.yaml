@@ -8,6 +8,8 @@ words:
   - Symfony
 ignorePaths:
   - "**/*.sql"
+  - "**/*.sh"
+  - "**/*.yaml"
 languageSettings:
   - languageId: markdown
     ignoreRegExpList:
