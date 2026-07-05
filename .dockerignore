@@ -32,4 +32,6 @@ vendor/
 .env.local
 .env.local.php
 .env.test
+.vscode/
 postgresql/
+observability/

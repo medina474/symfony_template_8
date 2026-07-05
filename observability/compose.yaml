@@ -1,0 +1,27 @@
+services:
+
+  victorialogs:
+    image: victoriametrics/victoria-logs:v1.51.0
+    restart: no
+    ports:
+      - "9428:9428"
+    volumes:
+      - victorialogs:/victoria-logs-data
+    command:
+      - "-storageDataPath=/victoria-logs-data"
+      - "-retentionPeriod=60d"   # Keep logs for 60 days
+      - "-defaultMsgValue=empty" # Fallback so logs aren't dropped
+
+  vector:
+    image: timberio/vector:0.57.0.custom.3d46266-distroless-libc
+    restart: no
+    user: root
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - ./observability/vector.yaml:/etc/vector/vector.yaml:ro
+    depends_on:
+      - victorialogs
+
+volumes:
+  victorialogs:

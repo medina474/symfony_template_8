@@ -1,0 +1,69 @@
+sources:
+  docker:
+    type: docker_logs
+    exclude_containers: ["victorialogs", "vector"]
+
+transforms:
+  msg_parser:
+    type: remap
+    inputs: [docker]
+    source: |
+      parsed, err = parse_json(.message)
+      if err == null {
+        . = merge!(., parsed)
+      } else {
+        .message = to_string(.message) ?? "empty message"
+
+        # Cas PHP brut
+        if match(.message, r'PHP (Warning|Fatal|Notice|Parse error)') {
+          .log_type = "php_error"
+        }
+      }
+
+      # Cas FrankenPHP (access log typique)
+      if exists(.method) && exists(.status) {
+        .log_type = "http_access"
+      }
+
+      # Cas Monolog structuré
+      if exists(.channel) || exists(.level) {
+        .log_type = "application"
+        . = merge!(., parsed.context)
+      }
+
+      # fallback
+      if !exists(.log_type) {
+        .log_type = "unknown"
+      }
+
+      #._msg = msg.message
+      #.severity_text = msg.level_name
+      #.stream = msg.channel
+      #.timestamp = msg.datetime
+
+      # nettoyage docker noise
+      del(.label."com.docker.compose.config-hash")
+      del(.label."com.docker.compose.container-number")
+      del(.label."com.docker.compose.image")
+      del(.label."com.docker.compose.oneoff")
+      del(.label."com.docker.compose.project")
+      del(.label."com.docker.compose.project.config_files")
+      del(.label."com.docker.compose.project.working_dir")
+      del(.label."com.docker.compose.version")
+
+      del(.label."org.opencontainers.image.description")
+      del(.label."org.opencontainers.image.licenses")
+      del(.label."org.opencontainers.image.vendor")
+
+sinks:
+  victorialogs:
+    type: elasticsearch
+    inputs:
+      - msg_parser
+    endpoints:
+      - http://victorialogs:9428/insert/elasticsearch
+    mode: bulk
+    compression: gzip
+    query:
+      _stream_fields: log_type
+      _msg_field: message
