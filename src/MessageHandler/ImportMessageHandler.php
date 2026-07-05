@@ -3,18 +3,18 @@
 namespace App\MessageHandler;
 
 use App\Csv\CsvImporter;
-use App\Message\CsvUploaded;
+use App\Message\ImportMessage;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler()]
-final readonly class CsvUploadedHandler
+final readonly class ImportMessageHandler
 {
     public function __construct(
         private CsvImporter $csvImporter,
     ) {
     }
 
-    public function __invoke(CsvUploaded $message): void
+    public function __invoke(ImportMessage $message): void
     {
         $this->csvImporter->importCsv($message->content, $message->importId);
     }

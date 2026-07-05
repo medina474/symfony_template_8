@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Message\DemoMessage;
+use App\Message\ImportMessage;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -140,5 +144,34 @@ final class DemoController extends AbstractController
     public function form(): Response
     {
         return $this->render('demo/form.html.twig');
+    }
+
+    #[Route('/demo/async', name: 'demo_async')]
+    public function async(
+        Request $request,
+        MessageBusInterface $bus
+    ): Response
+    {
+        $form = $this->createFormBuilder()
+            ->add('csv', FileType::class)
+            ->add('send', SubmitType::class)
+            ->getForm();
+
+        if ($form->handleRequest($request)->isSubmitted() && $form->isValid()) {
+            $importId = uuid_create();
+            $content = (string) file_get_contents($form->get('csv')->getData()->getPathname());
+
+            $bus->dispatch(new ImportMessage($importId, $content));
+
+            $this->addFlash('success', 'The file will be imported ASAP.');
+
+            return $this->redirectToRoute('demo_async', [
+                'importId' => $importId,
+            ]);
+        }
+
+        return $this->render('demo/async.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

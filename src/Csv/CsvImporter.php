@@ -4,7 +4,6 @@ namespace App\Csv;
 
 use App\Entity\FirstNameStat;
 use Doctrine\ORM\EntityManagerInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
 use Twig\Environment;
@@ -15,7 +14,6 @@ final readonly class CsvImporter
         private EntityManagerInterface $em,
         private HubInterface $mercurePublisher,
         private Environment $twig,
-        private LoggerInterface $logger,
     ) {
     }
 
@@ -26,7 +24,6 @@ final readonly class CsvImporter
         try {
             $sqlConnection->beginTransaction();
             $sqlConnection->executeQuery('TRUNCATE first_name_stat');
-            $this->logger->info('truncate table');
             $this->doHandle($content, $importId);
 
             $sqlConnection->commit();
@@ -42,15 +39,13 @@ final readonly class CsvImporter
         $tmpFile = tempnam(sys_get_temp_dir(), "async-csv-{$importId}-");
         file_put_contents($tmpFile, $content);
 
-        $this->logger->info("fichier $tmpFile");
         $csv = new \SplFileObject($tmpFile);
         $csv->setFlags(\SplFileObject::READ_CSV | \SplFileObject::SKIP_EMPTY | \SplFileObject::DROP_NEW_LINE);
         $csv->setCsvControl(';', escape: '\\');
 
         $batchSize = 100;
         $lineCount = $this->countLines($tmpFile);
-        $this->logger->info("count $lineCount");
-
+       
         $this->publishProgress($importId, 0, $lineCount);
 
         foreach ($csv as $lineNumber => $data) {
@@ -74,6 +69,7 @@ final readonly class CsvImporter
 
             if (0 === $lineNumber % $batchSize) {
                 $this->em->flush();
+                $this->em->clear();
 
                 $this->publishProgress($importId, $lineNumber, $lineCount);
                 $this->reset();
@@ -115,7 +111,7 @@ final readonly class CsvImporter
             $catchPhrase = "{$catchPhrase} ({$current} / {$total})";
         }
 
-        $content = $this->twig->load('csv/async.html.twig')->renderBlock('status', [
+        $content = $this->twig->load('demo/async.html.twig')->renderBlock('status', [
             'percent' => $percent,
             'catch_phrase' => $catchPhrase,
         ]);
