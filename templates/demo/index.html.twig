@@ -14,7 +14,8 @@
     Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
 </p>
 <ul>
-  <li><a href='{{ path(name = 'demo_form') }}'>Les formulaires<a></li>
-  <li><a href='{{ path(name = 'demo_messenger') }}'>Symfony Messenger</a<</li>
+  <li><a href='{{ path(name = 'demo_form') }}' data-turbo-prefetch='false'>Les formulaires<a></li>
+  <li><a href='{{ path(name = 'demo_messenger') }}' data-turbo-prefetch='false'>Symfony Messenger</a></li>
+  <li><a href='{{ path(name = 'demo_mailer') }}' data-turbo-prefetch='false'>Symfony Mailer</a<</li>
 </ul>
 {% endblock %}

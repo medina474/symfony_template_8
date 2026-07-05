@@ -11,15 +11,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 final class DemoController extends AbstractController
 {
-    #[Route('/demo', name: 'app_demo')]
+    #[Route('/demo', name: 'demo_demo')]
     public function index(): Response
     {
-        return $this->render('demo/index.html.twig', [
-            'controller_name' => 'DemoController',
-        ]);
+        return $this->render('demo/index.html.twig');
     }
 
     #[Route('/demo/session', name: 'demo_session')]
@@ -67,7 +67,33 @@ final class DemoController extends AbstractController
     {
         $bus->dispatch(new DemoMessage('Dans la communication, le plus compliqué n\'est ni le message, ni la technique, mais le récepteur.'));
 
-        return $this->render('demo/index.html.twig');
+        return $this->render('demo/messenger.html.twig');
+    }
+
+    #[Route('/demo/mailer', name: 'demo_mailer')]
+    public function mailer(
+        LoggerInterface $logger,
+        MailerInterface $mailer,
+    ): Response
+    {
+         $email = new Email()
+            ->from('hello@example.com')
+            ->to('you@example.com')
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject('Time for Symfony Mailer!')
+            ->text('Sending emails is fun again!')
+            ->html('<p>See Twig integration for better HTML integration!</p>');
+
+        $mailer->send($email);
+
+        $logger->info('Message envoyé');
+
+        return $this->render('demo/mailer.html.twig', [
+            'controller_name' => 'DemoController',
+        ]);
     }
 
     #[Route('/demo/form', name: 'demo_form')]
