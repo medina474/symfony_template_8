@@ -4,15 +4,16 @@ namespace App\Controller;
 
 use App\Message\DemoMessage;
 use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 final class DemoController extends AbstractController
 {
@@ -76,16 +77,19 @@ final class DemoController extends AbstractController
         MailerInterface $mailer,
     ): Response
     {
-         $email = new Email()
+         $email = new TemplatedEmail()
             ->from('hello@example.com')
             ->to('you@example.com')
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
-            ->subject('Time for Symfony Mailer!')
-            ->text('Sending emails is fun again!')
-            ->html('<p>See Twig integration for better HTML integration!</p>');
+            ->subject('Test de Symfony Mailer')
+            ->text('Message au format texte.')
+            ->htmlTemplate('demo/mailer_message.html.twig')
+            ->context([
+                'couleur' => 'bleu',
+            ]);
 
         $mailer->send($email);
 

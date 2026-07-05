@@ -1,0 +1,22 @@
+{# templates/email/layout.html.twig #}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Notification{% endblock %}</title>
+</head>
+<body style="font-family: Arial, sans-serif">
+
+<header>
+    <h1>Mon application</h1>
+</header>
+
+{{ couleur }}
+
+<footer>
+    <small>© {{ "now"|date("Y") }} Mon application</small>
+</footer>
+
+</body>
+</html>

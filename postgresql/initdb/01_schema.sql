@@ -9,7 +9,7 @@ create table public.doctrine_migration_versions (
 -- ----------------------------------------------------------------------------
 
 create table job (
-    id uuid primary key default uuidv4(),
+    id uuid primary key,
     status text not null,
     payload jsonb not null,
     result jsonb null,

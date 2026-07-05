@@ -14,7 +14,7 @@ class DemoMessageHandler
     ) {
     }
 
-    public function __invoke(DemoMessage $message,)
+    public function __invoke(DemoMessage $message,): void
     {
         $this->logger->error($message->getContent());
     }
