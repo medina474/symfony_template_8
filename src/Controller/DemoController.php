@@ -10,20 +10,24 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsCsrfTokenValid;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
 final class DemoController extends AbstractController
 {
-    #[Route('/demo', name: 'demo_demo')]
+    #[Route('/demo', name: 'demo')]
     public function index(): Response
     {
         return $this->render('demo/index.html.twig');
     }
 
-    #[Route('/demo/session', name: 'demo_session')]
+    /**
+     * Session
+     */
+    #[Route('/demo/session', name: 'demo_session', methods:['POST'])]
+    #[IsCsrfTokenValid('demo_session', tokenKey: '_csrf_token')]
     public function session(
         Request $request,
         CacheInterface $cache,
@@ -37,13 +41,23 @@ final class DemoController extends AbstractController
             return ['resultat' => 73];
         });
 
-        return $this->render('dev/index.html.twig');
+        return $this->redirectToRoute('demo_session_success');
+    }
+
+    #[Route('/demo/session_success', name: 'demo_session_success')]
+    public function session_success(
+        Request $request,
+        ): Response
+    {
+        $session = $request->getSession();
+        return $this->render('demo/session.html.twig', [ 'couleur' => $session->get('couleur')]);
     }
 
     /**
      * Monolog
      */
-    #[Route('/demo/logger', name: 'demo_logger')]
+    #[Route('/demo/logger', name: 'demo_logger', methods:['POST'])]
+    #[IsCsrfTokenValid('demo_logger', tokenKey: '_csrf_token')]
     public function logger(
         LoggerInterface $logger,
     ): Response
@@ -55,23 +69,39 @@ final class DemoController extends AbstractController
             'cause' => 'inconnue'
         ]);
 
-        return $this->render('demo/index.html.twig');
+        return $this->redirectToRoute('demo_logger_success');
+    }
+
+    #[Route('/demo/logger_success', name: 'demo_logger_success')]
+    public function logger_success(): Response
+    {
+        return $this->render('demo/logger.html.twig');
     }
 
     /**
      * Symfony Messenger
      */
-    #[Route('/demo/messenger', name: 'demo_messenger')]
+    #[Route('/demo/messenger', name: 'demo_messenger', methods:['POST'])]
     public function messenger(
         MessageBusInterface $bus,
     ): Response
     {
         $bus->dispatch(new DemoMessage('Dans la communication, le plus compliqué n\'est ni le message, ni la technique, mais le récepteur.'));
 
+        return $this->redirectToRoute('demo_messenger_success');
+    }
+
+    #[Route('/demo/messenger/success', name: 'demo_messenger_success')]
+    public function messenger_success(): Response
+    {
         return $this->render('demo/messenger.html.twig');
     }
 
-    #[Route('/demo/mailer', name: 'demo_mailer')]
+    /**
+     * Symfony Mailer
+     */
+    #[Route('/demo/mailer', name: 'demo_mailer', methods:['POST'])]
+    #[IsCsrfTokenValid('demo_mailer', tokenKey: '_csrf_token')]
     public function mailer(
         LoggerInterface $logger,
         MailerInterface $mailer,
@@ -95,11 +125,17 @@ final class DemoController extends AbstractController
 
         $logger->info('Message envoyé');
 
+        return $this->redirectToRoute('demo_mailer_success');
+    }
+
+    #[Route('/demo/mailer/success', name: 'demo_mailer_success')]
+    public function mailer_success(): Response
+    {
         return $this->render('demo/mailer.html.twig', [
             'controller_name' => 'DemoController',
         ]);
     }
-
+            
     #[Route('/demo/form', name: 'demo_form')]
     public function form(): Response
     {

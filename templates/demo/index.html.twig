@@ -15,7 +15,51 @@
 </p>
 <ul>
   <li><a href='{{ path(name = 'demo_form') }}' data-turbo-prefetch='false'>Les formulaires<a></li>
-  <li><a href='{{ path(name = 'demo_messenger') }}' data-turbo-prefetch='false'>Symfony Messenger</a></li>
-  <li><a href='{{ path(name = 'demo_mailer') }}' data-turbo-prefetch='false'>Symfony Mailer</a<</li>
+  <li><form method="post"
+        action="{{ path('demo_session') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_session') }}">
+        <button class="btn">
+            Session
+        </button>
+    </form>
+  </li>
+  <li><form method="post"
+        action="{{ path('demo_messenger') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_messenger') }}">
+        <button class="btn">
+            Symfony Messenger
+        </button>
+    </form>
+  </li>
+  <li>
+    <form method="post"
+        action="{{ path('demo_logger') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_logger') }}">
+        <button class="btn">
+            Symfony Logger
+        </button>
+    </form>
+  </li>
+  <li>
+    <form method="post"
+        action="{{ path('demo_mailer') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_mailer') }}">
+        <button class="btn">
+            Symfony Mailer
+        </button>
+    </form>
+  </li>
 </ul>
 {% endblock %}
