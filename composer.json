@@ -19,6 +19,7 @@
         "symfony/flex": "^2",
         "symfony/form": "8.1.*",
         "symfony/framework-bundle": "8.1.*",
+        "symfony/free-mobile-notifier": "8.1.*",
         "symfony/mailer": "8.1.*",
         "symfony/mercure-bundle": "^0.4.2",
         "symfony/monolog-bundle": "^4.0",

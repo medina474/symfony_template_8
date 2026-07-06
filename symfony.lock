@@ -146,6 +146,15 @@
             ".editorconfig"
         ]
     },
+    "symfony/free-mobile-notifier": {
+        "version": "8.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.1",
+            "ref": "3bd91e5e874bd0b6174fa1459b7f2fd1a099114f"
+        }
+    },
     "symfony/mailer": {
         "version": "8.1",
         "recipe": {

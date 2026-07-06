@@ -2,9 +2,10 @@ framework:
     notifier:
         chatter_transports:
         texter_transports:
+            freemobile: '%env(FREE_MOBILE_DSN)%'
         channel_policy:
             # use chat/slack, chat/telegram, sms/twilio or sms/nexmo
-            urgent: ['email']
+            urgent: ['texter']
             high: ['email']
             medium: ['email']
             low: ['email']

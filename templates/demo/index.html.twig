@@ -62,5 +62,17 @@
         </button>
     </form>
   </li>
+  <li>
+    <form method="post"
+        action="{{ path('demo_notifier') }}"
+        data-turbo="false">
+        <input type="hidden"
+            name="_csrf_token"
+            value="{{ csrf_token('demo_notifier') }}">
+        <button class="btn">
+            Symfony Notifier
+        </button>
+    </form>
+  </li>
 </ul>
 {% endblock %}

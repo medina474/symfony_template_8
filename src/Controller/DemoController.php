@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Notifier\Message\SmsMessage;
+use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsCsrfTokenValid;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -107,7 +109,6 @@ final class DemoController extends AbstractController
     #[Route('/demo/mailer', name: 'demo_mailer', methods:['POST'])]
     #[IsCsrfTokenValid('demo_mailer', tokenKey: '_csrf_token')]
     public function mailer(
-        LoggerInterface $logger,
         MailerInterface $mailer,
     ): Response
     {
@@ -127,19 +128,40 @@ final class DemoController extends AbstractController
 
         $mailer->send($email);
 
-        $logger->info('Message envoyé');
-
         return $this->redirectToRoute('demo_mailer_success');
     }
 
     #[Route('/demo/mailer/success', name: 'demo_mailer_success')]
     public function mailer_success(): Response
     {
-        return $this->render('demo/mailer.html.twig', [
-            'controller_name' => 'DemoController',
-        ]);
+        return $this->render('demo/mailer.html.twig');
     }
-            
+     
+    /**
+     * Symfony Notifier
+     */
+    #[Route('/demo/notifier', name: 'demo_notifier', methods:['POST'])]
+    #[IsCsrfTokenValid('demo_notifier', tokenKey: '_csrf_token')]
+    public function notifier(
+        TexterInterface $texter,
+    ): Response
+    {
+        $sms = new SmsMessage(
+            '+1411111111',
+            'A new login was detected!'
+        );
+
+        $sentMessage = $texter->send($sms);
+
+        return $this->redirectToRoute('demo_notifier_success');
+    }
+
+    #[Route('/demo/notifier/success', name: 'demo_notifier_success')]
+    public function notifier_success(): Response
+    {
+        return $this->render('demo/notifier.html.twig');
+    }
+
     #[Route('/demo/form', name: 'demo_form')]
     public function form(): Response
     {
