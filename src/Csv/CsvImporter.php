@@ -7,6 +7,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
 use Twig\Environment;
+use Monolog\Logger;
+use Symfony\Bridge\Monolog\Processor\DebugProcessor;
+use Symfony\Component\DependencyInjection\ServicesResetterInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final readonly class CsvImporter
 {
@@ -14,6 +18,12 @@ final readonly class CsvImporter
         private EntityManagerInterface $em,
         private HubInterface $mercurePublisher,
         private Environment $twig,
+        #[Autowire(service: 'services_resetter')]
+        private ServicesResetterInterface $resetter,
+        #[Autowire(service: 'monolog.logger.request')]
+        private Logger $logger,
+        #[Autowire(service: 'debug.log_processor')]
+        private ?DebugProcessor $processor = null,
     ) {
     }
 
@@ -77,8 +87,11 @@ final readonly class CsvImporter
         }
 
         $this->em->flush();
+        $this->em->clear();
         $this->reset();
         $this->publishProgress($importId, $lineCount, $lineCount);
+
+        unlink($tmpFile);
     }
 
     private function publishProgress(string $importId, int $current, int $total): void
@@ -140,11 +153,11 @@ final readonly class CsvImporter
     // Wait for https://github.com/symfony/symfony/pull/60019
     private function reset(): void
     {
-        //$this->logger->reset();
-        //$this->processor?->reset();
+        $this->logger->reset();
+        $this->processor?->reset();
         if (\PHP_SAPI !== 'cli') {
             return;
         }
-        //$this->resetter->reset();
+        $this->resetter->reset();
     }
 }
