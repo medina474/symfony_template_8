@@ -114,6 +114,7 @@ RUN <<-EOF
 	composer dump-autoload --classmap-authoritative --no-dev
 	composer dump-env prod
 	composer run-script --no-dev post-install-cmd
+	#php bin/console debug:container --env-vars
 	if [ -f importmap.php ]; then
 		php bin/console tailwind:build --minify
 		php bin/console asset-map:compile
